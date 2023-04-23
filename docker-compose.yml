@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+
+  db:
+    container_name: store_psql_db
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+
+  crawling:
+    build: ./crawling
+    container_name: crawling
+    ports:
+      - "8050:8050"
+    depends_on:
+      - db
+    restart: "no"
+
+  dash:
+    build: ./dash
+    container_name: dash
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: always

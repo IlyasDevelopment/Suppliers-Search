@@ -1,0 +1,6 @@
+SQLAlchemy==1.4.46
+pandas==1.5.2
+plotly-express==0.4.1
+psycopg2==2.9.5
+python-dotenv==0.21.1
+streamlit==1.16.0
